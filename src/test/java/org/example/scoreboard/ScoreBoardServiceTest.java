@@ -28,17 +28,33 @@ class ScoreBoardServiceTest {
         scoreBoardService.startMatch("home", "away");
 
         assertEquals(1, scoreBoard.getBoard().size());
-        assertEquals("home", scoreBoard.getBoard().get(0).getHomeTeamScores().getTeamName());
-        assertEquals(0, scoreBoard.getBoard().get(0).getHomeTeamScores().getScores());
-        assertEquals("away", scoreBoard.getBoard().get(0).getAwayTeamScores().getTeamName());
-        assertEquals(0, scoreBoard.getBoard().get(0).getAwayTeamScores().getScores());
+        assertEquals("home", scoreBoard.getBoard().get(0).getHomeTeamScore().getTeamName());
+        assertEquals(0, scoreBoard.getBoard().get(0).getHomeTeamScore().getScore());
+        assertEquals("away", scoreBoard.getBoard().get(0).getAwayTeamScore().getTeamName());
+        assertEquals(0, scoreBoard.getBoard().get(0).getAwayTeamScore().getScore());
+    }
+
+    @Test
+    void shouldUpdateTeamScores() {
+        // given
+        addMatchToTheBoard(new Match(new TeamScore("home"), new TeamScore("away")));
+
+        // when
+        scoreBoardService.updateScore(new TeamScore("home", 3), new TeamScore("away", 1));
+
+        // then
+        assertEquals(1, scoreBoard.getBoard().size());
+        assertEquals("home", scoreBoard.getBoard().get(0).getHomeTeamScore().getTeamName());
+        assertEquals(3, scoreBoard.getBoard().get(0).getHomeTeamScore().getScore());
+        assertEquals("away", scoreBoard.getBoard().get(0).getAwayTeamScore().getTeamName());
+        assertEquals(1, scoreBoard.getBoard().get(0).getAwayTeamScore().getScore());
     }
 
     @Test
     void shouldReturnAllMatchesFromTheBoard() {
         // given
-        addMatchToTheBoard(new Match(new TeamScores("test1"), new TeamScores("test2")));
-        addMatchToTheBoard(new Match(new TeamScores("test3"), new TeamScores("test4")));
+        addMatchToTheBoard(new Match(new TeamScore("test1"), new TeamScore("test2")));
+        addMatchToTheBoard(new Match(new TeamScore("test3"), new TeamScore("test4")));
 
         // when
         List<Match> matchesInProgressSummary = scoreBoardService.getMatchesInProgressSummary();

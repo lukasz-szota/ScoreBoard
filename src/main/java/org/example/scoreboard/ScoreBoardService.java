@@ -10,10 +10,10 @@ public class ScoreBoardService {
     private final ScoreBoard scoreBoard;
 
     public void startMatch(String homeTeam, String awayTeam) {
-        scoreBoard.addMatch(new Match(new TeamScores(homeTeam), new TeamScores(awayTeam)));
+        scoreBoard.addMatch(new Match(new TeamScore(homeTeam), new TeamScore(awayTeam)));
     }
 
-    public void updateSore(TeamScores homeTeamScores, TeamScores awayTeamScores) {
+    public void updateScore(TeamScore homeTeamScore, TeamScore awayTeamScore) {
 
     }
 
