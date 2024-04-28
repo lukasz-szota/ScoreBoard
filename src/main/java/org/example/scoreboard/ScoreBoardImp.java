@@ -12,5 +12,6 @@ class ScoreBoardImp implements ScoreBoard {
 
     @Override
     public void addMatch(Match match) {
+        board.add(match);
     }
 }

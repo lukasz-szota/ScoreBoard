@@ -11,7 +11,7 @@ public class ScoreBoardService {
     private final ScoreBoard scoreBoard;
 
     public void startMatch(String homeTeam, String awayTeam) {
-
+        scoreBoard.addMatch(new Match(homeTeam, awayTeam));
     }
 
     public void updateSore(String homeTeam, String awayTeam, int homeTeamScore, int awayTeamScore) {
