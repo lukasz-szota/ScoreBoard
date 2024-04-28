@@ -23,6 +23,6 @@ public class ScoreBoardService {
     }
 
     public List<Match> getMatchesInProgressSummary() {
-        return Collections.emptyList();
+        return scoreBoard.getBoard();
     }
 }
