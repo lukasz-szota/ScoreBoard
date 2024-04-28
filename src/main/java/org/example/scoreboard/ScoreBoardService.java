@@ -2,7 +2,6 @@ package org.example.scoreboard;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -11,10 +10,10 @@ public class ScoreBoardService {
     private final ScoreBoard scoreBoard;
 
     public void startMatch(String homeTeam, String awayTeam) {
-        scoreBoard.addMatch(new Match(homeTeam, awayTeam));
+        scoreBoard.addMatch(new Match(new TeamScores(homeTeam), new TeamScores(awayTeam)));
     }
 
-    public void updateSore(String homeTeam, String awayTeam, int homeTeamScore, int awayTeamScore) {
+    public void updateSore(TeamScores homeTeamScores, TeamScores awayTeamScores) {
 
     }
 

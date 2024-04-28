@@ -6,7 +6,7 @@ import lombok.*;
 @RequiredArgsConstructor
 public class Match {
 
-    private final String homeTeam;
-    private final String awayTeam;
+    private final TeamScores homeTeamScores;
+    private final TeamScores awayTeamScores;
 
 }

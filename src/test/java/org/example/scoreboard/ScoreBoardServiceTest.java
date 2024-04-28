@@ -33,8 +33,8 @@ class ScoreBoardServiceTest {
     @Test
     void shouldReturnAllMatchesFromTheBoard() {
         // given
-        addMatchToTheBoard(new Match("test1", "test2"));
-        addMatchToTheBoard(new Match("test3", "test4"));
+        addMatchToTheBoard(new Match(new TeamScores("test1"), new TeamScores("test2")));
+        addMatchToTheBoard(new Match(new TeamScores("test3"), new TeamScores("test4")));
 
         // when
         List<Match> matchesInProgressSummary = scoreBoardService.getMatchesInProgressSummary();
