@@ -1,4 +1,6 @@
 package org.example.scoreboard;
 
-public interface ScoreBoard {
+interface ScoreBoard {
+
+    void addMatch(Match match);
 }
