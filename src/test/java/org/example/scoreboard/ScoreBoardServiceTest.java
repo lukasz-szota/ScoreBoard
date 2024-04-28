@@ -35,7 +35,7 @@ class ScoreBoardServiceTest {
     }
 
     @Test
-    void shouldUpdateTeamScores() {
+    void shouldUpdateScore() {
         // given
         addMatchToTheBoard(new Match(new TeamScore("home"), new TeamScore("away")));
 
@@ -48,6 +48,19 @@ class ScoreBoardServiceTest {
         assertEquals(3, scoreBoard.getBoard().get(0).getHomeTeamScore().getScore());
         assertEquals("away", scoreBoard.getBoard().get(0).getAwayTeamScore().getTeamName());
         assertEquals(1, scoreBoard.getBoard().get(0).getAwayTeamScore().getScore());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenUpdateTeamScoreForNotExistingMatch() {
+        // given
+        addMatchToTheBoard(new Match(new TeamScore("home"), new TeamScore("away")));
+
+        // when
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> scoreBoardService.updateScore(new TeamScore("test1", 3), new TeamScore("test2", 1)));
+
+        // then
+        assertTrue(exception.getMessage().contains("No match found between test1 and test2!"));
     }
 
     @Test
