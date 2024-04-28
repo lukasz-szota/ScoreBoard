@@ -24,10 +24,14 @@ class ScoreBoardServiceTest {
     }
 
     @Test
-    void shouldAddMatchToTheBoard() {
+    void shouldAddMatchWithInitialScoresValueToTheBoard() {
         scoreBoardService.startMatch("home", "away");
 
         assertEquals(1, scoreBoard.getBoard().size());
+        assertEquals("home", scoreBoard.getBoard().get(0).getHomeTeamScores().getTeamName());
+        assertEquals(0, scoreBoard.getBoard().get(0).getHomeTeamScores().getScores());
+        assertEquals("away", scoreBoard.getBoard().get(0).getAwayTeamScores().getTeamName());
+        assertEquals(0, scoreBoard.getBoard().get(0).getAwayTeamScores().getScores());
     }
 
     @Test
