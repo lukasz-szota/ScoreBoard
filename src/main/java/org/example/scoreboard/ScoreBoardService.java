@@ -23,7 +23,7 @@ public class ScoreBoardService {
         return scoreBoard.getBoard().stream()
                 .filter(m -> m.getHomeTeamScore().getTeamName().equals(homeTeam) && m.getAwayTeamScore().getTeamName().equals(awayTeam))
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException(String.format("No match found between %s and %s!", homeTeam, awayTeam)));
     }
 
     public void finishMatch(String homeTeam, String awayTeam) {
