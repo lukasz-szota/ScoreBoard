@@ -130,7 +130,7 @@ class ScoreBoardServiceTest {
     }
 
     @Test
-    void shouldReturnAllMatchesFromTheBoardOrderedByTheirTotalScoreAndStartTime() {
+    void shouldReturnAllMatchesFromTheBoardOrderedByTheirTotalScoreAndReversedStartTime() {
         // given
         addMatchToTheBoard(new Match(new TeamScore("test1", 0), new TeamScore("test2", 1)));
         addMatchToTheBoard(new Match(new TeamScore("test3", 2), new TeamScore("test4", 1)));
@@ -140,10 +140,10 @@ class ScoreBoardServiceTest {
         List<Match> matchesInProgressSummary = scoreBoardService.getMatchesInProgressSummary();
 
         assertEquals(3, matchesInProgressSummary.size());
-        assertEquals("test3", matchesInProgressSummary.get(0).getHomeTeamScore().getTeamName());
-        assertEquals("test4", matchesInProgressSummary.get(0).getAwayTeamScore().getTeamName());
-        assertEquals("test5", matchesInProgressSummary.get(1).getHomeTeamScore().getTeamName());
-        assertEquals("test6", matchesInProgressSummary.get(1).getAwayTeamScore().getTeamName());
+        assertEquals("test5", matchesInProgressSummary.get(0).getHomeTeamScore().getTeamName());
+        assertEquals("test6", matchesInProgressSummary.get(0).getAwayTeamScore().getTeamName());
+        assertEquals("test3", matchesInProgressSummary.get(1).getHomeTeamScore().getTeamName());
+        assertEquals("test4", matchesInProgressSummary.get(1).getAwayTeamScore().getTeamName());
         assertEquals("test1", matchesInProgressSummary.get(2).getHomeTeamScore().getTeamName());
         assertEquals("test2", matchesInProgressSummary.get(2).getAwayTeamScore().getTeamName());
     }
