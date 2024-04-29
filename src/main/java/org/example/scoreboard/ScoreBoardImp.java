@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 class ScoreBoardImp implements ScoreBoard {
 
-    private List<Match> board =  new ArrayList<>();
+    private final List<Match> board =  new ArrayList<>();
 
     @Override
     public void addMatch(Match match) {
