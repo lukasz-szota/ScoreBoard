@@ -14,8 +14,8 @@ public class ScoreBoardService {
 
     public synchronized void startMatch(String homeTeam, String awayTeam) {
         scoreBoard.getBoard().stream()
-                .filter(m -> m.getHomeTeamScore().getTeamName().equals(homeTeam) || m.getAwayTeamScore().getTeamName().equals(homeTeam)
-                                || m.getHomeTeamScore().getTeamName().equals(awayTeam) || m.getAwayTeamScore().getTeamName().equals(awayTeam))
+                .filter(m -> m.homeTeamScore().getTeamName().equals(homeTeam) || m.awayTeamScore().getTeamName().equals(homeTeam)
+                                || m.homeTeamScore().getTeamName().equals(awayTeam) || m.awayTeamScore().getTeamName().equals(awayTeam))
                 .findAny()
                 .ifPresent(m -> {
                     throw new IllegalArgumentException("At least one team is already playing another match!");
@@ -26,20 +26,20 @@ public class ScoreBoardService {
 
     public synchronized void updateScore(TeamScore homeTeamScore, TeamScore awayTeamScore) {
         Match match = findMatch(homeTeamScore.getTeamName(), awayTeamScore.getTeamName());
-        match.getHomeTeamScore().setScore(homeTeamScore.getScore());
-        match.getAwayTeamScore().setScore(awayTeamScore.getScore());
+        match.homeTeamScore().setScore(homeTeamScore.getScore());
+        match.awayTeamScore().setScore(awayTeamScore.getScore());
     }
 
     private Match findMatch(final String homeTeam, final String awayTeam) {
         return scoreBoard.getBoard().stream()
-                .filter(m -> m.getHomeTeamScore().getTeamName().equals(homeTeam) && m.getAwayTeamScore().getTeamName().equals(awayTeam))
+                .filter(m -> m.homeTeamScore().getTeamName().equals(homeTeam) && m.awayTeamScore().getTeamName().equals(awayTeam))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("No match found between %s and %s!", homeTeam, awayTeam)));
     }
 
     public synchronized void finishMatch(String homeTeam, String awayTeam) {
         Match finishedMatch = scoreBoard.getBoard().stream()
-                .filter(m -> m.getHomeTeamScore().getTeamName().equals(homeTeam) && m.getAwayTeamScore().getTeamName().equals(awayTeam))
+                .filter(m -> m.homeTeamScore().getTeamName().equals(homeTeam) && m.awayTeamScore().getTeamName().equals(awayTeam))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(String.format("No match found between %s and %s!", homeTeam, awayTeam)));
 
@@ -47,7 +47,7 @@ public class ScoreBoardService {
     }
 
     public List<Match> getMatchesInProgressSummary() {
-        Comparator<Match> totalScoreComparator = Comparator.comparing(m -> m.getHomeTeamScore().getScore() + m.getAwayTeamScore().getScore());
+        Comparator<Match> totalScoreComparator = Comparator.comparing(m -> m.homeTeamScore().getScore() + m.awayTeamScore().getScore());
         List<Match> resultList = new ArrayList<>(scoreBoard.getBoard());
         Collections.reverse(resultList);
 

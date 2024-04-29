@@ -28,10 +28,10 @@ class ScoreBoardServiceTest {
         scoreBoardService.startMatch("home", "away");
 
         assertEquals(1, scoreBoard.getBoard().size());
-        assertEquals("home", scoreBoard.getBoard().get(0).getHomeTeamScore().getTeamName());
-        assertEquals(0, scoreBoard.getBoard().get(0).getHomeTeamScore().getScore());
-        assertEquals("away", scoreBoard.getBoard().get(0).getAwayTeamScore().getTeamName());
-        assertEquals(0, scoreBoard.getBoard().get(0).getAwayTeamScore().getScore());
+        assertEquals("home", scoreBoard.getBoard().get(0).homeTeamScore().getTeamName());
+        assertEquals(0, scoreBoard.getBoard().get(0).homeTeamScore().getScore());
+        assertEquals("away", scoreBoard.getBoard().get(0).awayTeamScore().getTeamName());
+        assertEquals(0, scoreBoard.getBoard().get(0).awayTeamScore().getScore());
     }
 
     @Test
@@ -57,10 +57,10 @@ class ScoreBoardServiceTest {
 
         // then
         assertEquals(1, scoreBoard.getBoard().size());
-        assertEquals("home", scoreBoard.getBoard().get(0).getHomeTeamScore().getTeamName());
-        assertEquals(3, scoreBoard.getBoard().get(0).getHomeTeamScore().getScore());
-        assertEquals("away", scoreBoard.getBoard().get(0).getAwayTeamScore().getTeamName());
-        assertEquals(1, scoreBoard.getBoard().get(0).getAwayTeamScore().getScore());
+        assertEquals("home", scoreBoard.getBoard().get(0).homeTeamScore().getTeamName());
+        assertEquals(3, scoreBoard.getBoard().get(0).homeTeamScore().getScore());
+        assertEquals("away", scoreBoard.getBoard().get(0).awayTeamScore().getTeamName());
+        assertEquals(1, scoreBoard.getBoard().get(0).awayTeamScore().getScore());
     }
 
     @Test
@@ -123,10 +123,10 @@ class ScoreBoardServiceTest {
         List<Match> matchesInProgressSummary = scoreBoardService.getMatchesInProgressSummary();
 
         assertEquals(2, matchesInProgressSummary.size());
-        assertEquals("test3", matchesInProgressSummary.get(0).getHomeTeamScore().getTeamName());
-        assertEquals("test4", matchesInProgressSummary.get(0).getAwayTeamScore().getTeamName());
-        assertEquals("test1", matchesInProgressSummary.get(1).getHomeTeamScore().getTeamName());
-        assertEquals("test2", matchesInProgressSummary.get(1).getAwayTeamScore().getTeamName());
+        assertEquals("test3", matchesInProgressSummary.get(0).homeTeamScore().getTeamName());
+        assertEquals("test4", matchesInProgressSummary.get(0).awayTeamScore().getTeamName());
+        assertEquals("test1", matchesInProgressSummary.get(1).homeTeamScore().getTeamName());
+        assertEquals("test2", matchesInProgressSummary.get(1).awayTeamScore().getTeamName());
     }
 
     @Test
@@ -140,12 +140,12 @@ class ScoreBoardServiceTest {
         List<Match> matchesInProgressSummary = scoreBoardService.getMatchesInProgressSummary();
 
         assertEquals(3, matchesInProgressSummary.size());
-        assertEquals("test5", matchesInProgressSummary.get(0).getHomeTeamScore().getTeamName());
-        assertEquals("test6", matchesInProgressSummary.get(0).getAwayTeamScore().getTeamName());
-        assertEquals("test3", matchesInProgressSummary.get(1).getHomeTeamScore().getTeamName());
-        assertEquals("test4", matchesInProgressSummary.get(1).getAwayTeamScore().getTeamName());
-        assertEquals("test1", matchesInProgressSummary.get(2).getHomeTeamScore().getTeamName());
-        assertEquals("test2", matchesInProgressSummary.get(2).getAwayTeamScore().getTeamName());
+        assertEquals("test5", matchesInProgressSummary.get(0).homeTeamScore().getTeamName());
+        assertEquals("test6", matchesInProgressSummary.get(0).awayTeamScore().getTeamName());
+        assertEquals("test3", matchesInProgressSummary.get(1).homeTeamScore().getTeamName());
+        assertEquals("test4", matchesInProgressSummary.get(1).awayTeamScore().getTeamName());
+        assertEquals("test1", matchesInProgressSummary.get(2).homeTeamScore().getTeamName());
+        assertEquals("test2", matchesInProgressSummary.get(2).awayTeamScore().getTeamName());
     }
 
     @Test
@@ -168,20 +168,20 @@ class ScoreBoardServiceTest {
 
         // then
         assertEquals(5, matchesInProgressSummary.size());
-        assertEquals("Uruguay", matchesInProgressSummary.get(0).getHomeTeamScore().getTeamName());
-        assertEquals("Italy", matchesInProgressSummary.get(0).getAwayTeamScore().getTeamName());
+        assertEquals("Uruguay", matchesInProgressSummary.get(0).homeTeamScore().getTeamName());
+        assertEquals("Italy", matchesInProgressSummary.get(0).awayTeamScore().getTeamName());
 
-        assertEquals("Spain", matchesInProgressSummary.get(1).getHomeTeamScore().getTeamName());
-        assertEquals("Brazil", matchesInProgressSummary.get(1).getAwayTeamScore().getTeamName());
+        assertEquals("Spain", matchesInProgressSummary.get(1).homeTeamScore().getTeamName());
+        assertEquals("Brazil", matchesInProgressSummary.get(1).awayTeamScore().getTeamName());
 
-        assertEquals("Mexico", matchesInProgressSummary.get(2).getHomeTeamScore().getTeamName());
-        assertEquals("Canada", matchesInProgressSummary.get(2).getAwayTeamScore().getTeamName());
+        assertEquals("Mexico", matchesInProgressSummary.get(2).homeTeamScore().getTeamName());
+        assertEquals("Canada", matchesInProgressSummary.get(2).awayTeamScore().getTeamName());
 
-        assertEquals("Argentina", matchesInProgressSummary.get(3).getHomeTeamScore().getTeamName());
-        assertEquals("Australia", matchesInProgressSummary.get(3).getAwayTeamScore().getTeamName());
+        assertEquals("Argentina", matchesInProgressSummary.get(3).homeTeamScore().getTeamName());
+        assertEquals("Australia", matchesInProgressSummary.get(3).awayTeamScore().getTeamName());
 
-        assertEquals("Germany", matchesInProgressSummary.get(4).getHomeTeamScore().getTeamName());
-        assertEquals("France", matchesInProgressSummary.get(4).getAwayTeamScore().getTeamName());
+        assertEquals("Germany", matchesInProgressSummary.get(4).homeTeamScore().getTeamName());
+        assertEquals("France", matchesInProgressSummary.get(4).awayTeamScore().getTeamName());
     }
 
     private void addMatchToTheBoard(Match match) {
