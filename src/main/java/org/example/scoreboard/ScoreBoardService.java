@@ -11,6 +11,14 @@ public class ScoreBoardService {
     private final ScoreBoard scoreBoard;
 
     public void startMatch(String homeTeam, String awayTeam) {
+        scoreBoard.getBoard().stream()
+                .filter(m -> m.getHomeTeamScore().getTeamName().equals(homeTeam) || m.getAwayTeamScore().getTeamName().equals(homeTeam)
+                                || m.getHomeTeamScore().getTeamName().equals(awayTeam) || m.getAwayTeamScore().getTeamName().equals(awayTeam))
+                .findAny()
+                .ifPresent(m -> {
+                    throw new IllegalArgumentException("At least one team is already playing another match!");
+                });
+
         scoreBoard.addMatch(new Match(new TeamScore(homeTeam), new TeamScore(awayTeam)));
     }
 
