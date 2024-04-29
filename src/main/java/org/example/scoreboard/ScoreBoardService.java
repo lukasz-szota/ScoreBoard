@@ -2,6 +2,8 @@ package org.example.scoreboard;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -46,8 +48,10 @@ public class ScoreBoardService {
 
     public List<Match> getMatchesInProgressSummary() {
         Comparator<Match> totalScoreComparator = Comparator.comparing(m -> m.getHomeTeamScore().getScore() + m.getAwayTeamScore().getScore());
+        List<Match> resultList = new ArrayList<>(scoreBoard.getBoard());
+        Collections.reverse(resultList);
 
-        return scoreBoard.getBoard().stream()
+        return resultList.stream()
                 .sorted(totalScoreComparator.reversed())
                 .toList();
     }
