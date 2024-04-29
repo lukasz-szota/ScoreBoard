@@ -35,6 +35,19 @@ class ScoreBoardServiceTest {
     }
 
     @Test
+    void shouldThrowExceptionWhenStartMatchWithAlreadyPlayingTeam() {
+        // given
+        addMatchToTheBoard(new Match(new TeamScore("home"), new TeamScore("away")));
+
+        // when
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> scoreBoardService.startMatch("test1","home"));
+
+        // then
+        assertTrue(exception.getMessage().contains("At least one team is already playing another match!"));
+    }
+
+    @Test
     void shouldUpdateScore() {
         // given
         addMatchToTheBoard(new Match(new TeamScore("home"), new TeamScore("away")));
