@@ -75,6 +75,22 @@ class ScoreBoardServiceTest {
         assertEquals(2, matchesInProgressSummary.size());
     }
 
+    @Test
+    void shouldReturnAllMatchesFromTheBoardOrderedByTheirTotalScore() {
+        // given
+        addMatchToTheBoard(new Match(new TeamScore("test1", 0), new TeamScore("test2", 1)));
+        addMatchToTheBoard(new Match(new TeamScore("test3", 2), new TeamScore("test4", 1)));
+
+        // when
+        List<Match> matchesInProgressSummary = scoreBoardService.getMatchesInProgressSummary();
+
+        assertEquals(2, matchesInProgressSummary.size());
+        assertEquals("test3", matchesInProgressSummary.get(0).getHomeTeamScore().getTeamName());
+        assertEquals("test4", matchesInProgressSummary.get(0).getAwayTeamScore().getTeamName());
+        assertEquals("test1", matchesInProgressSummary.get(1).getHomeTeamScore().getTeamName());
+        assertEquals("test2", matchesInProgressSummary.get(1).getAwayTeamScore().getTeamName());
+    }
+
     private void addMatchToTheBoard(Match match) {
         scoreBoard.getBoard().add(match);
     }
