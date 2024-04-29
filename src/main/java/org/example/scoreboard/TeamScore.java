@@ -1,14 +1,12 @@
 package org.example.scoreboard;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class TeamScore {
 
     private final String teamName;
