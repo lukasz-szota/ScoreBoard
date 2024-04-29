@@ -64,6 +64,18 @@ class ScoreBoardServiceTest {
     }
 
     @Test
+    void shouldFinishMatchAndRemoveItFromTheBoard() {
+        // given
+        addMatchToTheBoard(new Match(new TeamScore("home"), new TeamScore("away")));
+
+        // when
+        scoreBoardService.finishMatch("home", "away");
+
+        // then
+        assertEquals(0, scoreBoard.getBoard().size());
+    }
+
+    @Test
     void shouldReturnAllMatchesFromTheBoard() {
         // given
         addMatchToTheBoard(new Match(new TeamScore("test1"), new TeamScore("test2")));
