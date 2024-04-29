@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class ScoreBoardService {
@@ -37,6 +36,6 @@ public class ScoreBoardService {
 
         return scoreBoard.getBoard().stream()
                 .sorted(totalScoreComparator.reversed())
-                .collect(Collectors.toList());
+                .toList();
     }
 }
