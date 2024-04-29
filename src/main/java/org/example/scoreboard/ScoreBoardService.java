@@ -28,7 +28,12 @@ public class ScoreBoardService {
     }
 
     public void finishMatch(String homeTeam, String awayTeam) {
+        Match finishedMatch = scoreBoard.getBoard().stream()
+                .filter(m -> m.getHomeTeamScore().getTeamName().equals(homeTeam) && m.getAwayTeamScore().getTeamName().equals(awayTeam))
+                .findAny()
+                .get();
 
+        scoreBoard.getBoard().remove(finishedMatch);
     }
 
     public List<Match> getMatchesInProgressSummary() {
