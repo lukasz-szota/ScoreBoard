@@ -76,6 +76,19 @@ class ScoreBoardServiceTest {
     }
 
     @Test
+    void shouldThrowExceptionWhenFinishNotExistingMatch() {
+        // given
+        addMatchToTheBoard(new Match(new TeamScore("home"), new TeamScore("away")));
+
+        // when
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> scoreBoardService.finishMatch("test1", "test2"));
+
+        // then
+        assertTrue(exception.getMessage().contains("No match found between test1 and test2!"));
+    }
+
+    @Test
     void shouldReturnAllMatchesFromTheBoard() {
         // given
         addMatchToTheBoard(new Match(new TeamScore("test1"), new TeamScore("test2")));
