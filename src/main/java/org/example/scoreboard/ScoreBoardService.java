@@ -31,7 +31,7 @@ public class ScoreBoardService {
         Match finishedMatch = scoreBoard.getBoard().stream()
                 .filter(m -> m.getHomeTeamScore().getTeamName().equals(homeTeam) && m.getAwayTeamScore().getTeamName().equals(awayTeam))
                 .findAny()
-                .get();
+                .orElseThrow(() -> new IllegalArgumentException(String.format("No match found between %s and %s!", homeTeam, awayTeam)));
 
         scoreBoard.getBoard().remove(finishedMatch);
     }
